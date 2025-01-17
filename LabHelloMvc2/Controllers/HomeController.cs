@@ -1,32 +1,20 @@
-using System.Diagnostics;
-using LabHelloMvc2.Models;
+using LabHelloMvc.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LabHelloMvc2.Controllers
+
+namespace LabHelloMvc.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        public ActionResult Index()
         {
-            _logger = logger;
-        }
+            var person = new Person
+            {
+                FirstName = "Jacob",
+                LastName = "Poirier"
+            };
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(person);
         }
     }
 }
